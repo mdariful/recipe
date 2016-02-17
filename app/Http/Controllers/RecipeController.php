@@ -50,19 +50,6 @@ class RecipeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-         $recipe = Recipe::findOrFail($id);
-
-    return view('recipe.show')->withRecipe($recipe);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
