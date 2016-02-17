@@ -17,9 +17,10 @@ class RecipeViewController extends Controller
      */
     public function index()
     {
-        //$recipe = Recipe::orderBy('created_at')->paginate(10);
-        //return view('recipe.index')->with('recipe', $recipe);
-        return view('recipe.index');
+        $recipe = Recipe::orderBy('created_at')->paginate(7);
+
+    return view('recipe.index')->withRecipe($recipe);
+        
         
     }
 }

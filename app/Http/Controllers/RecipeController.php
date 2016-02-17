@@ -20,6 +20,7 @@ class RecipeController extends Controller
      */
     public function create()
     {
+        
         return view('recipe.create');
     }
 
@@ -32,6 +33,20 @@ class RecipeController extends Controller
     public function store(Request $request)
     {
         //
+
+    $this->validate($request, [
+        'name' => 'required',
+        'description' => 'required',
+        'difficult' => 'required'
+    ]);
+
+    $input = $request->all();
+
+     Recipe::create($input);
+
+    Session()->flash('flash_message', 'Ricetta aggiunta con successo!');
+
+    return redirect()->back();
     }
 
     /**
@@ -42,7 +57,9 @@ class RecipeController extends Controller
      */
     public function show($id)
     {
-        //
+         $recipe = Recipe::findOrFail($id);
+
+    return view('recipe.show')->withRecipe($recipe);
     }
 
     /**
@@ -53,9 +70,9 @@ class RecipeController extends Controller
      */
     public function edit($id)
     {
-        //$recipe = Recipe::find($id);
-        // show the edit form and pass the gare
-        //return view('recipe.edit')->withGare($recipe);
+        $recipe = Recipe::findOrFail($id);
+
+    return view('recipe.edit')->withRecipe($recipe);
     }
 
     /**
@@ -67,10 +84,21 @@ class RecipeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //$recipeUpdate=Request::all();
-        //$recipe=Recipe::find($id);
-        //$recipe->update($recipeUpdate);
-        //return redirect('recipe');
+        $recipe = Recipe::findOrFail($id);
+
+    $this->validate($request, [
+        'name' => 'required',
+        'description' => 'required',
+        'difficult' => 'required'
+    ]);
+
+    $input = $request->all();
+
+    $recipe->fill($input)->save();
+
+    Session()->flash('flash_message', 'Aggiornato correttamente');
+
+    return redirect()->back();
     }
 
     /**
@@ -81,6 +109,12 @@ class RecipeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $recipe = Recipe::findOrFail($id);
+
+    $recipe->delete();
+
+    Session()->flash('flash_message', 'Cancellato');
+
+    return redirect()->route('recipe.index');
     }
 }
