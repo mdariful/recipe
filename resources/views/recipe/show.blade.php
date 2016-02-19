@@ -27,8 +27,8 @@
 								<div class="col-md-8">
 									<ul class="list-unstyled list-inline">
 										<li><i class="fa fa-calendar-o"></i>{{ $recipe->created_at }}</li>
-										<li><i class="fa fa-user"></i>Utente</li>
-										<li><i class="fa fa-book"></i>Categoria</li>
+										<li><i class="fa fa-user"></i>{{$recipe->user->name}}</li>
+										<li><i class="fa fa-book"></i>{{$recipe->categoria}}</li>
 										<li><i class="fa fa-hourglass"></i>{{ $recipe->difficult }}</li>
 									</ul>
 								</div>
@@ -37,6 +37,12 @@
 						<div class="mail-content">
 							{{ $recipe->description }}
 						</div>
+						<div class="mail-actions">
+							<ul class="list-unstyled list-inline">
+								<li><i class="fa fa-tags"></i>Ingredienti</li>
+								<li><span class="label label-default"></span></a></li>
+							</ul>
+						</div>
 					</div>
 				</section>
 			</div>
@@ -44,10 +50,16 @@
 			<div class="col-sm-3">
 				<section class="panel panel-default mail-categories">
 					    <div class="panel-heading"><strong><span class="fa fa-th"></span> Menu</strong></div>
-		
+					@if (Auth::guest())
 					<ul class="list-group">
 						<li class="list-group-item"><a href="{{ route('recipe.index') }}">
-							<i class="fa fa-envelope-o"></i>Torna indietro
+							<i class="fa fa-envelope-o"></i> Torna indietro
+						</a></li>
+						<li class="list-group-item"><a href="javascript:;">
+							<i class="fa fa-print"></i> Stampa
+						</a></li>@else
+							<li class="list-group-item"><a href="{{ route('recipe.index') }}">
+							<i class="fa fa-envelope-o"></i> Torna indietro
 						</a></li>
 						<li class="list-group-item"><a href="javascript:;">
 							<i class="fa fa-print"></i> Stampa
@@ -55,7 +67,7 @@
 						<li class="list-group-item"><a href="{{ route('recipe.edit', $recipe->id) }}">
 							<i class="fa fa-edit"></i>Modifica o Cancella
 						</a></li>
-					</ul>
+					</ul>@endif
 				</section>
 			</div>
 			

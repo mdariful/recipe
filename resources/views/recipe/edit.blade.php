@@ -23,17 +23,27 @@
    'Bassa' => 'Bassa'],
     null, ['class' => 'controls']
 ) !!}
+{!! Form::select('category', [
+   'Antipasti' => 'Antipasti',
+   'Primi' => 'Primi',
+   'Secondi' => 'Secondi'],
+   'Contorni' => 'Contorni'],
+   'Dolci e Dessert' => 'Dolci e Dessert'],
+    null, ['class' => 'controls']
+) !!}
 </div>
 <div class="form-group">
 {!! Form::submit('Aggiorna ricetta', ['class' => 'btn btn-primary form-control']) !!}
 </div>
-
 {!! Form::close() !!}
+
 {!! Form::open([
 'method' => 'DELETE',
 'route' => ['recipe.destroy', $recipe->id]
 ]) !!}
+<div class="form-group">
 {!! Form::submit('Cancella', ['class' => 'btn btn-primary btn-danger form-control']) !!}
+</div>
 {!! Form::close() !!}
 </div>
 @endsection

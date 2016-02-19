@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recipe;
+use App\User;
+use App\Ingredient;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -24,7 +26,8 @@ class RecipeShowController extends Controller
     public function show($id)
     {
          $recipe = Recipe::findOrFail($id);
-
+        //$ingredients = $recipe->ingredient;
     return view('recipe.show')->withRecipe($recipe);
+    //->withIngredient($ingredients);
     }
 }

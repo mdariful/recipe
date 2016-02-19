@@ -56,7 +56,7 @@
     margin: 0 0 11px;
 }
 
-.mail-info ul li i 		{		margin-left: 10px;  		margin-right: 10px; 	}
+.mail-info ul li i 		{		margin-left: 10px;  		margin-right: 10px; 		}
 .mail-categories .list-group .list-group-item { padding: 0px; }
 .mail-categories .list-group .list-group-item.active > a { border-left: 3px solid rgb(28, 126, 187); color: rgb(28, 126, 187); background-color: rgb(250, 250, 250); }
 .mail-categories .list-group .list-group-item > a { border-left: 3px solid rgb(246, 246, 246); display: block; padding: 15px; text-decoration: none; transition: all 0.25s ease-in-out 0s; }

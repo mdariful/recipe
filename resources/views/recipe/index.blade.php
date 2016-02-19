@@ -37,7 +37,7 @@
         </div>
         @endforeach
     </div>
-<div class="page-nation">
+    <div class="page-nation">
 {!! $recipe->render() !!}
 </div>
 </div>

@@ -59,6 +59,9 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
+
+                    
+                 
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
@@ -74,6 +77,16 @@
                             </ul>
                         </li>
                     @endif
+                       <div class="col-sm-6 col-md-6">
+                <form class="navbar-form" role="search" action="{{--URL::action('RecipeController@search')--}}" method="get">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cerca ricetta" name="ingredients">
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                </div>
+                </form>
+                </div>
                 </ul>
             </div>
         </div>

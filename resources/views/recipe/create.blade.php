@@ -18,6 +18,14 @@
    'Bassa' => 'Bassa'],
     null, ['class' => 'controls']
 ) !!}
+{!! Form::select('category', [
+   'Antipasti' => 'Antipasti',
+   'Primi' => 'Primi',
+   'Secondi' => 'Secondi'],
+   'Contorni' => 'Contorni'],
+   'Dolci e Dessert' => 'Dolci e Dessert'],
+    null, ['class' => 'controls']
+) !!}
 </div>
 <div class="form-group">
 {!! Form::submit('Aggiungi ricetta', ['class' => 'btn btn-primary form-control']) !!}
