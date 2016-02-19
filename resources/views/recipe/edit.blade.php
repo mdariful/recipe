@@ -2,9 +2,10 @@
 
 @section('content')
 <div class="container">
+<div class="row">
     <h1>Variazione per "{{ $recipe->name }}"</h1>
-<p class="lead">Aggiorna, o <a href="{{ route('recipe.index') }}">torna alle ricette.</a></p>
-<hr>
+    <p class="lead">Aggiorna, o <a href="{{ route('recipe.index') }}">torna alle ricette.</a></p>
+    <hr>
 
 
     {!! Form::model($recipe, [
@@ -16,25 +17,36 @@
 {!! Form::input('text', 'name', null, ['class' => 'form-control']) !!}
 {!! Form::label('description', 'Descrizione della ricetta:') !!}
 {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
-{!! Form::label('name', 'Difficoltà:') !!}
+</div>
+
+<div class="form-group">
+{!! Form::label('name', 'Difficoltà:', ['class' =>'control-label']) !!}
+
 {!! Form::select('difficult', [
    'Alta' => 'Alta',
    'Media' => 'Media',
    'Bassa' => 'Bassa'],
-    null, ['class' => 'controls']
+    null, ['class' => 'form-control']
 ) !!}
+</div>
+
+<div class="form-group">
+{!! Form::label('category', 'Categoria:', ['class' =>'control-label']) !!}
+
 {!! Form::select('category', [
    'Antipasti' => 'Antipasti',
    'Primi' => 'Primi',
-   'Secondi' => 'Secondi'],
-   'Contorni' => 'Contorni'],
+   'Secondi' => 'Secondi',
+   'Contorni' => 'Contorni',
    'Dolci e Dessert' => 'Dolci e Dessert'],
-    null, ['class' => 'controls']
+    null, ['class' => 'form-control']
 ) !!}
 </div>
+
 <div class="form-group">
 {!! Form::submit('Aggiorna ricetta', ['class' => 'btn btn-primary form-control']) !!}
 </div>
+
 {!! Form::close() !!}
 
 {!! Form::open([
@@ -45,5 +57,6 @@
 {!! Form::submit('Cancella', ['class' => 'btn btn-primary btn-danger form-control']) !!}
 </div>
 {!! Form::close() !!}
+</div>
 </div>
 @endsection

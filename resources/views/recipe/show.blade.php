@@ -28,7 +28,7 @@
 									<ul class="list-unstyled list-inline">
 										<li><i class="fa fa-calendar-o"></i>{{ $recipe->created_at }}</li>
 										<li><i class="fa fa-user"></i>{{$recipe->user->name}}</li>
-										<li><i class="fa fa-book"></i>{{$recipe->categoria}}</li>
+										<li><i class="fa fa-book"></i>{{ $recipe->category }}</li>
 										<li><i class="fa fa-hourglass"></i>{{ $recipe->difficult }}</li>
 									</ul>
 								</div>

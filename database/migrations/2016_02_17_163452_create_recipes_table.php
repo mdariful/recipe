@@ -17,7 +17,7 @@ class CreateRecipesTable extends Migration
             $table->string('name', 100);
             $table->text('description');
             $table->string('difficult', 20);
-            $table->string('category', 20);
+            $table->text('category', 20);
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

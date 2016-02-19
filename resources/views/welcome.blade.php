@@ -51,7 +51,7 @@
 					<div class="top-menu">
 					<span class="menu lft"> </span>
 						<ul>
-							<li><a class="active" href="index.html">HOME</a></li>
+							<li><a class="active" href="/">HOME</a></li>
 							<li><a href="recipe">RICETTE</a></li>
 							<li><a href="#">COSA OFFRIAMO</a></li>
 							<li><a href="#">GALLERY</a></li>

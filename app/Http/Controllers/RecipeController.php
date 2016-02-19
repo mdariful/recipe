@@ -39,7 +39,8 @@ class RecipeController extends Controller
     $this->validate($request, [
         'name' => 'required',
         'description' => 'required',
-        'difficult' => 'required'
+        'difficult' => 'required',
+        'category' => 'required'
     ]);
     //$input = $request->all();
      //Recipe::create($input);
@@ -83,12 +84,13 @@ class RecipeController extends Controller
         $this->validate($request, [
         'name' => 'required',
         'description' => 'required',
-        'difficult' => 'required'
+        'difficult' => 'required',
+        'category' => 'required'
     ]);
 
         $input = $request->all();
         if($recipe && ($request->user()->id == $recipe->user_id || $request->user()->is_admin()))
-    {
+        {
         $recipe->fill($input)->save();
     
         Session()->flash('flash_message', 'Aggiornato correttamente');
