@@ -12,11 +12,7 @@ use App\Http\Controllers\Controller;
 class RecipeShowController extends Controller
 {
     
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     /**
      * Display the specified resource.
      *
@@ -25,9 +21,11 @@ class RecipeShowController extends Controller
      */
     public function show($id)
     {
-         $recipe = Recipe::findOrFail($id);
+         //$recipe = Recipe::findOrFail($id);
+         $recipe = Recipe::find($id);
         //$ingredients = $recipe->ingredient;
-    return view('recipe.show')->withRecipe($recipe);
-    //->withIngredient($ingredients);
+    //return view('recipe.show')->withRecipe($recipe);
+    return view('recipe.show', compact('recipe'));
+    //->withIngredient($ingredients)
     }
 }

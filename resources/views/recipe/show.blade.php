@@ -38,10 +38,14 @@
 							{{ $recipe->description }}
 						</div>
 						<div class="mail-actions">
+							@unless ($recipe->ingredients->isEmpty())
 							<ul class="list-unstyled list-inline">
 								<li><i class="fa fa-tags"></i>Ingredienti</li>
-								<li><span class="label label-default"></span></a></li>
+								@foreach($recipe->ingredients as $ingredienti)
+								<li><span class="label label-default">{{$ingredienti->name}}</span></a></li>
+								@endforeach
 							</ul>
+						@endunless
 						</div>
 					</div>
 				</section>

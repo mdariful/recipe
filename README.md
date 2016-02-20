@@ -10,7 +10,7 @@ Una ricetta è definita da:
  
  - un titolo che permette di riconoscerla(OK)
  - un testo che descrive la procedura(OK)
- - una serie di ingredienti
+ - una serie di ingredienti(ok)
  
 ## Requisito Minimo per la sufficienza
  
@@ -31,7 +31,7 @@ Creare le risorse (modelli, rotte, controllori, viste etc) necessarie per:
 
 ## Super Bonus (vale più degli altri)
 
-- Ingredienti sono una relazione sulla ricetta
+- Ingredienti sono una relazione sulla ricetta(ok)
 - creare le risorse per aggiungerli
 
 ## Consegna

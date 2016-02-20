@@ -40,6 +40,31 @@
 ) !!}
 
 </div>
+<!--<div class="form-group">
+    
+		<input type="hidden" name="count" value="1" />
+        <div class="control-group" id="fields">
+            <label class="control-label" for="field1">Aggiungi gli ingredienti</label>
+            <div class="controls" id="profs"> 
+                <form class="input-append">
+                    <div id="field entry input-group">
+                        <input autocomplete="off" class="input form-control" id="field1" name="prof1" type="text" />
+                        <span class="input-group-btn"><button id="b1" class="btn add-more btn-success btn-add" type="button">+</button></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+      
+    </div>
+    
+</div>-->
+<div class="form-group">
+{!! Form::label('ingredient_list', 'Ingredienti:', ['class' =>'control-label']) !!}
+
+{!! Form::select('ingredient_list[]', $ingredients, null, ['id' => 'ingredient_list', 'class' => 'form-control', 'multiple']) !!}
+
+</div>
+
 
 <div class="form-group">
 {!! Form::submit('Aggiungi ricetta', ['class' => 'btn btn-primary form-control']) !!}
@@ -48,4 +73,12 @@
 {!! Form::close() !!}
 </div>
 </div>
+@endsection
+@section('footer')
+<script type="text/javascript">
+  $('#ingredient_list').select2({
+       placeholder: 'Scegliere o aggiungere gli ingredienti' ,
+       tags: true
+      });
+</script>
 @endsection

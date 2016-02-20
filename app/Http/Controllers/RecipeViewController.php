@@ -19,7 +19,7 @@ class RecipeViewController extends Controller
     {
         $recipe = Recipe::orderBy('id', 'DESC')->paginate(7);
 
-    return view('recipe.index')->withRecipe($recipe);
+    return view('recipe.index',compact('recipe'));
         
         
     }

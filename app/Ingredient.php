@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'name'
+    ];
     
-     public function recipe()
+     public function recipes()
     {
-        return $this->belongsTo('App\Recipe');
+        return $this->belongsToMany('App\Recipe');
     }
 }

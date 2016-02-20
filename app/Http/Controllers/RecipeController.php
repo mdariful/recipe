@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Recipe;
 use Auth;
 use App\User;
+use App\Ingredient;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostFormRequest;
@@ -23,8 +24,8 @@ class RecipeController extends Controller
      */
     public function create()
     {
-        
-        return view('recipe.create');
+        $ingredients = Ingredient::lists('name', 'id');
+        return view('recipe.create', compact('ingredients'));
     }
 
     /**
@@ -42,10 +43,11 @@ class RecipeController extends Controller
         'difficult' => 'required',
         'category' => 'required'
     ]);
-    //$input = $request->all();
-     //Recipe::create($input);
-     $input = new Recipe($request->all());
-    Auth::user()->recipe()->save($input);
+    
+     //dd($request->all());
+     $recipe = Auth::user()->recipe()->create($request->all());
+     
+     $recipe->ingredients()->attach((array) $request->input('ingredient_list'));
     Session()->flash('flash_message', 'Ricetta aggiunta con successo!');
     return redirect()->back();
     }
@@ -62,12 +64,18 @@ class RecipeController extends Controller
     {
         
         $recipe = Recipe::findOrFail($id);
+        $ingredients = Ingredient::lists('name', 'id');
+        /**
+         * if the user authenticate can modify the recipe own
+         */
         if($recipe && ($request->user()->id == $recipe->user_id || $request->user()->is_admin())){
-        return view('recipe.edit')->withRecipe($recipe);
+        return view('recipe.edit',compact('ingredients','recipe'));
+        }else{
+        Session()->flash('flash_message', 'Non hai i permessi!');
+        return redirect()->route('recipe.index');
         }
-        return redirect('/recipe')->withErrors('you have not sufficient permissions');
 
-    //return view('recipe.edit')->withRecipe($recipe);
+        //return view('recipe.edit')->withRecipe($recipe);
     }
 
     /**
@@ -89,16 +97,23 @@ class RecipeController extends Controller
     ]);
 
         $input = $request->all();
+        /**
+         * if the user authenticate can modify the recipe own
+         */
+         
         if($recipe && ($request->user()->id == $recipe->user_id || $request->user()->is_admin()))
         {
-        $recipe->fill($input)->save();
-    
+        $recipe->update($input);
+        /**
+         * syncronize list of ingredients with database and the recipe
+         */
+         
+        $recipe->ingredients()->sync($request->input('ingredient_list'));
         Session()->flash('flash_message', 'Aggiornato correttamente');
-    
         return redirect()->back();
-    }else
-        {
-          return redirect('/home')->withErrors('you have not sufficient permissions');
+        }else{
+        Session()->flash('flash_message', 'Non hai i permessi!');
+        return redirect()->route('recipe.index');
         }
     }
 
@@ -111,17 +126,9 @@ class RecipeController extends Controller
     public function destroy($id)
     {
         $recipe = Recipe::findOrFail($id);
-    if($recipe && ($request->user()->id == $recipe->user_id || $request->user()->is_admin()))
-    {
         $recipe->delete();
-    
         Session()->flash('flash_message', 'Cancellato');
-    
         return redirect()->route('recipe.index');
-    }else 
-    {
-        Session()->flash('flash_message', 'Non hai i permessi');
-    }
     }
     
 }

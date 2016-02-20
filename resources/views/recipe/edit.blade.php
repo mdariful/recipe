@@ -42,6 +42,12 @@
     null, ['class' => 'form-control']
 ) !!}
 </div>
+<div class="form-group">
+{!! Form::label('ingredient_list', 'Ingredienti:', ['class' =>'control-label']) !!}
+
+{!! Form::select('ingredient_list[]', $ingredients, null, ['id' => 'ingredient_list', 'class' => 'form-control', 'multiple']) !!}
+
+</div>
 
 <div class="form-group">
 {!! Form::submit('Aggiorna ricetta', ['class' => 'btn btn-primary form-control']) !!}
@@ -59,4 +65,12 @@
 {!! Form::close() !!}
 </div>
 </div>
+@endsection
+@section('footer')
+<script type="text/javascript">
+  $('#ingredient_list').select2({
+       placeholder: 'Scegliere o aggiungere gli ingredienti' ,
+       tags: true
+      });
+</script>
 @endsection

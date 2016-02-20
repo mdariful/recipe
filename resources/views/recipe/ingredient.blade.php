@@ -1,9 +1,10 @@
 {!! Form::open([
-    'route' => 'recipe.store'
-]) !!}
-{!! Form::hidden('on_recipe', '{{ $recipe->id }}') !!}
-{!! Form::label('description', 'Aggiungi gli ingredienti') !!}
-{!! Form::textarea('name_ing', null, ['class' => 'form-control']) !!} 
+    'route' => 'ingredient.create'
+], ['class'=>'form-horizontal']) !!}
+
+
+{!! Form::label('name', 'Aggiungi gli ingredienti') !!}
+{!! Form::text('name', null, ['class' => 'form-control']) !!} 
 
 </div>
 <div class="form-group">

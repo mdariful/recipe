@@ -14,6 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -28,8 +30,12 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
     Route::get('/recipe', array('as' => 'recipe.index', 'uses' => 'RecipeViewController@index'));
+    
+    
     Route::get('/recipe/create', array('as' => 'recipe.create', 'uses' => 'RecipeController@create'));
     Route::post('/recipe', array('as' => 'recipe.store', 'uses' => 'RecipeController@store'));
+    
+    
     
     
     Route::get('/recipe/{id}', array('as' => 'recipe.show', 'uses' => 'RecipeShowController@show'));
