@@ -32,6 +32,20 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/search', array('as' => 'recipe.search', 'uses' => 'RecipeViewController@search'));
 });
 
+    
+    
+Route::group(['middleware' => ['web']], function () {    
+    Route::get('/ingredient/create', array('as' => 'ingredient.create', 'uses' => 'IngredientController@create'));
+    Route::post('/ingredient/create', array('as' => 'ingredient.store', 'uses' => 'IngredientController@store'));
+    
+    Route::get('/ingredient/{id}/edit', array('as' => 'ingredient.edit', 'uses' => 'IngredientController@edit'));
+    Route::put('/ingredient/{id}', array('as' => 'ingredient.update', 'uses' => 'IngredientController@update'));
+    
+    Route::delete('/ingredient/{id}', array('as' => 'ingredient.destroy', 'uses' => 'IngredienController@destroy'));
+});
+
+
+
 Route::group(['middleware' => ['web']], function () {
     //
     Route::get('/recipe', array('as' => 'recipe.index', 'uses' => 'RecipeViewController@index'));

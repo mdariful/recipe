@@ -38,8 +38,8 @@
         @endforeach
     </div>
     <div class="page-nation">
-{!! $recipe->render() !!}
-</div>
+    {!! $recipe->render() !!}
+    </div>
 </div>
 
 @endsection
