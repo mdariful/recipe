@@ -35,18 +35,12 @@ Route::group(['middleware' => ['web']], function () {
 Route::group(['middleware' => ['web']], function () {
     //
     Route::get('/recipe', array('as' => 'recipe.index', 'uses' => 'RecipeViewController@index'));
-      
-    
+
     Route::get('/recipe/create', array('as' => 'recipe.create', 'uses' => 'RecipeController@create'));
     Route::post('/recipe', array('as' => 'recipe.store', 'uses' => 'RecipeController@store'));
-    
-    
-    
-    
+
     Route::get('/recipe/{id}', array('as' => 'recipe.show', 'uses' => 'RecipeShowController@show'));
-    
-    
-    
+
     Route::get('/recipe/{id}/edit', array('as' => 'recipe.edit', 'uses' => 'RecipeController@edit'));
     Route::put('/recipe/{id}', array('as' => 'recipe.update', 'uses' => 'RecipeController@update'));
     

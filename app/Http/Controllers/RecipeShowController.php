@@ -21,11 +21,8 @@ class RecipeShowController extends Controller
      */
     public function show($id)
     {
-         //$recipe = Recipe::findOrFail($id);
-         $recipe = Recipe::find($id);
-        //$ingredients = $recipe->ingredient;
-    //return view('recipe.show')->withRecipe($recipe);
+    $recipe = Recipe::find($id);
     return view('recipe.show', compact('recipe'));
-    //->withIngredient($ingredients)
+    
     }
 }
