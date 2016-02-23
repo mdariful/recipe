@@ -80,7 +80,7 @@
                     @endif
                        <div class="col-sm-6 col-md-6">
                 
-                {!! Form::open(['url' => '/recipe/search', 'method' => 'get', 'class' => 'navbar-form navbar-left', 'role' => 'ingrediente']) !!}
+                {!! Form::open(['url' => '/search', 'method' => 'get', 'class' => 'navbar-form navbar-left', 'role' => 'ingrediente']) !!}
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Cerca ricetta" name="ingrediente">
                     

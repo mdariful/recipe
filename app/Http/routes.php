@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/recipe/search', 'RecipeViewController@search');
+
 
 
 /*
@@ -27,11 +27,15 @@ Route::get('/recipe/search', 'RecipeViewController@search');
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+Route::group(['middleware' => ['web']], function () {
+
+    Route::get('/search', array('as' => 'recipe.search', 'uses' => 'RecipeViewController@search'));
+});
 
 Route::group(['middleware' => ['web']], function () {
     //
     Route::get('/recipe', array('as' => 'recipe.index', 'uses' => 'RecipeViewController@index'));
-        
+      
     
     Route::get('/recipe/create', array('as' => 'recipe.create', 'uses' => 'RecipeController@create'));
     Route::post('/recipe', array('as' => 'recipe.store', 'uses' => 'RecipeController@store'));
