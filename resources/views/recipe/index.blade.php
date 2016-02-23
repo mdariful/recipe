@@ -15,7 +15,7 @@
         @foreach($recipe as $ricetta)
         <div class="item  col-xs-4 col-lg-4">
             <div class="thumbnail">
-                <img class="group list-group-image" src="img/ricette.jpg" alt="" />
+                <img class="group list-group-image" src="{{ URL::asset('img/ricette.jpg') }}" alt="" />
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading">
                         {{ str_limit($ricetta->name, $limit = 20, $end = '...') }}</h4>

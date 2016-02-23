@@ -26,7 +26,7 @@ Creare le risorse (modelli, rotte, controllori, viste etc) necessarie per:
 - Implementare autenticazione(OK)
 - La ricetta creata possiede un autore(OK)
 - La ricetta può essere modificata solo dall'autore(OK)
-- Ricerca per ingrediente nella risorsa del listato delle ricette (es /ricette?ingrediente=pepe ritorna le ricette che hanno pepe e peperoncino)
+- Ricerca per ingrediente nella risorsa del listato delle ricette (es /ricette?ingrediente=pepe ritorna le ricette che hanno pepe e peperoncino)(ok)
 - Gestione di amministratore
 
 ## Super Bonus (vale più degli altri)

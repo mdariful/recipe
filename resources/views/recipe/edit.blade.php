@@ -70,7 +70,14 @@
 <script type="text/javascript">
   $('#ingredient_list').select2({
        placeholder: 'Scegliere o aggiungere gli ingredienti' ,
-       tags: true
+       tags: true,
+       tokenSeparators: [",", " "],
+        createTag: function(newIngredient) {
+       return {
+           id: 'new:' + newIngredient.term,
+           text: newIngredient.term + ' (new)'
+       };
+   }
       });
 </script>
 @endsection

@@ -17,7 +17,7 @@
 							<div class="col-md-4">
 								<div class="pull-right">
 									
-									<a href="javascript:;" class="btn btn-sm btn-default"><i class="fa fa-print"></i></a>
+									<a href="javascript:;" onclick="myFunction()" class="btn btn-sm btn-default"><i class="fa fa-print"></i></a>
 									
 								</div>
 							</div>
@@ -28,7 +28,7 @@
 									<ul class="list-unstyled list-inline">
 										<li><i class="fa fa-calendar-o"></i>{{ $recipe->created_at }}</li>
 										<li><i class="fa fa-user"></i>{{$recipe->user->name}}</li>
-										<li><i class="fa fa-book"></i>{{ $recipe->category }}</li>
+										<li><i class="fa fa-cutlery"></i>{{ $recipe->category }}</li>
 										<li><i class="fa fa-hourglass"></i>{{ $recipe->difficult }}</li>
 									</ul>
 								</div>
@@ -39,8 +39,8 @@
 						</div>
 						<div class="mail-actions">
 							@unless ($recipe->ingredients->isEmpty())
-							<ul class="list-unstyled list-inline">
-								<li><i class="fa fa-tags"></i>Ingredienti</li>
+							<ul class="list-unstyled">
+								<li><i class="fa fa-check"></i>Ingredienti: </li>
 								@foreach($recipe->ingredients as $ingredienti)
 								<li><span class="label label-default">{{$ingredienti->name}}</span></a></li>
 								@endforeach
@@ -59,7 +59,7 @@
 						<li class="list-group-item"><a href="{{ route('recipe.index') }}">
 							<i class="fa fa-envelope-o"></i> Torna indietro
 						</a></li>
-						<li class="list-group-item"><a href="javascript:;">
+						<li class="list-group-item"><a href="javascript:;" onclick="myFunction()">
 							<i class="fa fa-print"></i> Stampa
 						</a></li>@else
 							<li class="list-group-item"><a href="{{ route('recipe.index') }}">

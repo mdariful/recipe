@@ -79,14 +79,16 @@
                         </li>
                     @endif
                        <div class="col-sm-6 col-md-6">
-                <form class="navbar-form" role="search" action="{{--URL::action('RecipeController@search')--}}" method="get">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Cerca ricetta" name="ingredients">
+                
+                {!! Form::open(['url' => '/recipe/search', 'method' => 'get', 'class' => 'navbar-form navbar-left', 'role' => 'ingrediente']) !!}
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Cerca ricetta" name="ingrediente">
+                    
                     <div class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </div>
-                </div>
-                </form>
+                    </div>
+                {!! Form::close() !!}
                 </div>
                 </ul>
             </div>
@@ -143,6 +145,11 @@
     $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
     });
     </script>
+    <script>
+function myFunction() {
+    window.print();
+}
+</script>
     @yield('footer')
 </body>
 </html>

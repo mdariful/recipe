@@ -95,26 +95,18 @@ class RecipeController extends Controller
         'difficult' => 'required',
         'category' => 'required'
     ]);
-
+        //dd($request->all());
         $input = $request->all();
         /**
          * if the user authenticate can modify the recipe own
          */
-         
-        if($recipe && ($request->user()->id == $recipe->user_id || $request->user()->is_admin()))
-        {
         $recipe->update($input);
         /**
          * syncronize list of ingredients with database and the recipe
          */
-         
-        $recipe->ingredients()->sync($request->input('ingredient_list'));
+        $recipe->ingredients()->sync((array) $request->input('ingredient_list'));
         Session()->flash('flash_message', 'Aggiornato correttamente');
         return redirect()->back();
-        }else{
-        Session()->flash('flash_message', 'Non hai i permessi!');
-        return redirect()->route('recipe.index');
-        }
     }
 
     /**
@@ -130,5 +122,6 @@ class RecipeController extends Controller
         Session()->flash('flash_message', 'Cancellato');
         return redirect()->route('recipe.index');
     }
+    
     
 }
