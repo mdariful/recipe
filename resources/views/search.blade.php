@@ -10,7 +10,9 @@
                 class="glyphicon glyphicon-th"></span>Griglia</a>
         </div>
     </div>
-    
+    @if(count($recipe) === 0)
+        <h1>Nessun risultato trovato</h1>
+     @else   
     <div id="products" class="row list-group">
         @foreach($recipe as $ricetta)
         <div class="item  col-xs-4 col-lg-4">
@@ -37,6 +39,8 @@
         </div>
         @endforeach
     </div>
+    @endif
+    
 </div>
 
 @endsection

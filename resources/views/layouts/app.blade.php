@@ -71,23 +71,14 @@
                      
                      <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Ricette
+                                Menu
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/recipe/create') }}">Crea ricette</a></li>
-                            </ul>
-                        </li>
-                     
-                     <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                Ingrediente
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/ingredient/create') }}">Crea ingrediente</a></li>
                             </ul>
                         </li>
-                     
-                     
+                    
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>

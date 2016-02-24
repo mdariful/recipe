@@ -47,16 +47,36 @@ class IngredientController extends Controller
     
     public function edit(Request $request, $id)
     {
-        
-        
-       
-        return redirect()->route('ingredient.create');
+        $ingredient = Ingredient::findOrFail($id);
+        return view('ingredient.edit',compact('ingredient'));
         
     }
     
     public function update(Request $request, $id)
     {
      
+        $ingredient = Ingredient::findOrFail($id);
+
+        $this->validate($request, [
+        'name' => 'required'
+    ]);
+        //dd($request->all());
+       
+        $input = $request->all();
+        
+        $ingredient->update($input);
+       
+        Session()->flash('flash_message', 'Aggiornato correttamente');
         return redirect()->back();
+    }
+    
+    
+    public function destroy(Request $request, $id)
+    {
+        $ingredient = Ingredient::findOrFail($id);
+        $ingredient->delete();
+        Session()->flash('flash_message', 'Cancellato');
+        return redirect()->route('ingredient.create');
+        
     }
 }

@@ -54,7 +54,7 @@
 							<li><a class="active" href="/">HOME</a></li>
 							<li><a href="recipe">RICETTE</a></li>
 							<li><a href="#">COSA OFFRIAMO</a></li>
-							<li><a href="#">GALLERY</a></li>
+							<li><a href="#">CONTATTI</a></li>
 							<li><a href="login">LOGIN</a></li>
 							<div class="clearfix"></div>
 						</ul>

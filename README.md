@@ -32,7 +32,7 @@ Creare le risorse (modelli, rotte, controllori, viste etc) necessarie per:
 ## Super Bonus (vale più degli altri)
 
 - Ingredienti sono una relazione sulla ricetta(ok)
-- creare le risorse per aggiungerli
+- creare le risorse per aggiungerli(ok)
 
 ## Consegna
 
