@@ -43,6 +43,18 @@ class RecipeController extends Controller
         'difficult' => 'required',
         'category' => 'required'
     ]);
+   
+    /**
+     * http://laravel.io/forum/04-22-2015-select2-dynamic-select-addcslashes
+     * 
+     */
+     
+    if ( ! $request->has('ingredient_list'))
+   {
+       $recipe->ingredients()->detach();
+       return;
+   }
+    
     $ingredients = array();
 
    foreach ($request->ingredient_list as $ingId)
@@ -117,8 +129,15 @@ class RecipeController extends Controller
          */
         
 
-   $ingredients = array();
-
+   
+    
+    if ( ! $request->has('ingredient_list'))
+   {
+       $recipe->ingredients()->detach();
+       return;
+   }
+    
+    $ingredients = array();
    foreach ($request->ingredient_list as $ingId)
    {
        if (substr($ingId, 0, 4) == 'new:')

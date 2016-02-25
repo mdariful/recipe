@@ -42,7 +42,7 @@
 							<ul class="list-unstyled">
 								<li><i class="fa fa-check"></i>Ingredienti: </li>
 								@foreach($recipe->ingredients as $ingredienti)
-								<li><span class="label label-default">{{$ingredienti->name}}</span></a></li>
+								<li><span class="label label-default">{{$ingredienti->name}}</span></li>
 								@endforeach
 							</ul>
 						@endunless
