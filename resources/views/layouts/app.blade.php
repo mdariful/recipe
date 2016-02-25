@@ -75,7 +75,7 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/recipe/create') }}">Crea ricette</a></li>
-                                <li><a href="{{ url('/ingredient/create') }}">Crea ingrediente</a></li>
+                                
                             </ul>
                         </li>
                     
