@@ -43,11 +43,22 @@ class RecipeController extends Controller
         'difficult' => 'required',
         'category' => 'required'
     ]);
-    
+    $ingredients = array();
+
+   foreach ($request->ingredient_list as $ingId)
+   {
+       if (substr($ingId, 0, 4) == 'new:')
+       {
+           $newIng = Ingredient::create(['name' => substr($ingId, 4)]);
+           $ingredients[] = $newIng->id;
+           continue;
+       }
+       $ingredients[] = $ingId;
+   }
      //dd($request->all());
      $recipe = Auth::user()->recipe()->create($request->all());
      
-     $recipe->ingredients()->attach((array) $request->input('ingredient_list'));
+     $recipe->ingredients()->attach($ingredients);
     Session()->flash('flash_message', 'Ricetta aggiunta con successo!');
     return redirect()->back();
     }
@@ -95,16 +106,32 @@ class RecipeController extends Controller
         'difficult' => 'required',
         'category' => 'required'
     ]);
-        //dd($request->all());
+        
         $input = $request->all();
         /**
          * if the user authenticate can modify the recipe own
          */
-        $recipe->update($input);
+        //$recipe->update($input);
         /**
          * syncronize list of ingredients with database and the recipe
          */
-        $recipe->ingredients()->sync((array) $request->input('ingredient_list'));
+        
+
+   $ingredients = array();
+
+   foreach ($request->ingredient_list as $ingId)
+   {
+       if (substr($ingId, 0, 4) == 'new:')
+       {
+           $newIng = Ingredient::create(['name' => substr($ingId, 4)]);
+           $ingredients[] = $newIng->id;
+           continue;
+       }
+       $ingredients[] = $ingId;
+   }
+    //dd($request->all());
+   
+        $recipe->ingredients()->sync($ingredients);
         Session()->flash('flash_message', 'Aggiornato correttamente');
         return redirect()->back();
     }
