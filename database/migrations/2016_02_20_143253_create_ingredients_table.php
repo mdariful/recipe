@@ -39,6 +39,6 @@ class CreateIngredientsTable extends Migration
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::drop('ingredients');
         Schema::dropIfExists('ingredient_recipe');
-         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

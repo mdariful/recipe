@@ -2,14 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div class="well well-sm">
-        <strong>Visualizzazione</strong>
-        <div class="btn-group">
-            <a href="#" id="list" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list">
-            </span>Lista</a> <a href="#" id="grid" class="btn btn-default btn-sm"><span
-                class="glyphicon glyphicon-th"></span>Griglia</a>
-        </div>
-    </div>
     @if(count($recipe) === 0)
         <h1>Nessun risultato trovato</h1>
      @else   

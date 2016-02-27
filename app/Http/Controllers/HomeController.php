@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\User;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -22,8 +24,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->user()->is_admin()){
+            return redirect()->route('admin.index');
+        }else{
         return view('home');
+        }
     }
 }

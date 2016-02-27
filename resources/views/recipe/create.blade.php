@@ -3,7 +3,9 @@
 @section('content')
 <div class="container">
 <div class="row">
-    
+        <h1>Creazione nuova ricetta</h1>
+    <p class="lead">Crea, o <a href="{{ route('recipe.index') }}">torna alle ricette.</a></p>
+    <hr>
 {!! Form::open([
     'route' => 'recipe.store'
 ], ['class'=>'form-horizontal']) !!}
@@ -40,24 +42,7 @@
 ) !!}
 
 </div>
-<!--<div class="form-group">
-    
-		<input type="hidden" name="count" value="1" />
-        <div class="control-group" id="fields">
-            <label class="control-label" for="field1">Aggiungi gli ingredienti</label>
-            <div class="controls" id="profs"> 
-                <form class="input-append">
-                    <div id="field entry input-group">
-                        <input autocomplete="off" class="input form-control" id="field1" name="prof1" type="text" />
-                        <span class="input-group-btn"><button id="b1" class="btn add-more btn-success btn-add" type="button">+</button></span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-      
-    </div>
-    
-</div>-->
+
 <div class="form-group">
 {!! Form::label('ingredient_list', 'Ingredienti:', ['class' =>'control-label']) !!}
 

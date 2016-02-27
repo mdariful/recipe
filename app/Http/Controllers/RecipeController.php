@@ -22,10 +22,16 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if($request->user()->can_post()){
         $ingredients = Ingredient::lists('name', 'id');
         return view('recipe.create', compact('ingredients'));
+    }else{
+        Session()->flash('flash_message', 'Non hai i permessi!');
+        return redirect()->route('recipe.index');
+    }
+        
     }
 
     /**
@@ -48,7 +54,8 @@ class RecipeController extends Controller
      * http://laravel.io/forum/04-22-2015-select2-dynamic-select-addcslashes
      * 
      */
-     
+    
+        
     if ( ! $request->has('ingredient_list'))
    {
        $recipe->ingredients()->detach();
@@ -73,6 +80,7 @@ class RecipeController extends Controller
      $recipe->ingredients()->attach($ingredients);
     Session()->flash('flash_message', 'Ricetta aggiunta con successo!');
     return redirect()->back();
+
     }
 
     
@@ -123,7 +131,7 @@ class RecipeController extends Controller
         /**
          * if the user authenticate can modify the recipe own
          */
-        //$recipe->update($input);
+        $recipe->update($input);
         /**
          * syncronize list of ingredients with database and the recipe
          */

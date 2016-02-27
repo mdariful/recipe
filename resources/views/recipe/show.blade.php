@@ -14,13 +14,7 @@
 							<div class="col-md-8">
 								<h3>{{ $recipe->name }}</h3>
 							</div>
-							<div class="col-md-4">
-								<div class="pull-right">
-									
-									<a href="javascript:;" onclick="myFunction()" class="btn btn-sm btn-default"><i class="fa fa-print"></i></a>
-									
-								</div>
-							</div>
+							
 						</div>
 						<div class="mail-info">
 							<div class="row">
@@ -59,15 +53,11 @@
 						<li class="list-group-item"><a href="{{ route('recipe.index') }}">
 							<i class="fa fa-envelope-o"></i> Torna indietro
 						</a></li>
-						<li class="list-group-item"><a href="javascript:;" onclick="myFunction()">
-							<i class="fa fa-print"></i> Stampa
-						</a></li>@else
+						@else
 							<li class="list-group-item"><a href="{{ route('recipe.index') }}">
 							<i class="fa fa-envelope-o"></i> Torna indietro
 						</a></li>
-						<li class="list-group-item"><a href="javascript:;">
-							<i class="fa fa-print"></i> Stampa
-						</a></li>
+						
 						<li class="list-group-item"><a href="{{ route('recipe.edit', $recipe->id) }}">
 							<i class="fa fa-edit"></i>Modifica o Cancella
 						</a></li>
