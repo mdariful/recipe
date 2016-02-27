@@ -11,8 +11,11 @@ $ sudo mv composer.phar /usr/local/bin/composer
 ```
 #Clone repository:
 ```sh
-git pull https://github.com/mdariful/recipe.git
+git clone https://github.com/mdariful/recipe.git
 ```
+#Set your database
+modify .env.example with your database configuration
+
 #Follow this command line instruction:
 ```sh
 composer update
@@ -20,5 +23,13 @@ php artisan key:generate
 php artisan migrate
 php artisan db:seed --class=UsersTableSeeder
 ```
+Now you can enjoy your application. 
+On the first Login change your credential as Admin
+First login credential is:
+email: admin@mail.com
+password: admin
+
+
+If you get any issue please open a issue so i can follow you and solve the problem.
 
 Made with all the Love of the World.
