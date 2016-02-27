@@ -1,174 +1,131 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-namespace App\Http\Controllers;
+    <title>My Recipe</title>
 
-use Illuminate\Http\Request;
-use App\User;
-use App\Ingredient;
-use App\Recipe;
-use Illuminate\Support\Facades\Input as input;
-use Hash;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+    <!-- Fonts -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel='stylesheet' type='text/css'>
 
-class AdminController extends Controller
-{
-     public function __construct()
-    {
-        $this->middleware('admin');
-    }
+    <!-- Styles -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ URL::asset('style.css') }}" rel="stylesheet">
+     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/css/select2.min.css" rel="stylesheet" />
+    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
+    <style>
+        body {
+            font-family: 'Lato';
+        }
+
+        .fa-btn {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body id="app-layout">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Branding Image -->
+                @if (Auth::guest())
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    My recipe
+                </a>
+                @else
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    My recipe
+                </a>
+                @endif
+            </div>
+
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    <!--<li><a href="{{ url('/home') }}">Home</a></li>-->
+                    <li><a href="{{ url('/recipe') }}">Ricette</a></li>
+                    @if(Auth::user()->is_admin())
+                    <li><a href="{{ url('/admin') }}">Amministrazione</a></li>
+                    @endif
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+
+                    
+                 
+                    <!-- Authentication Links -->
+                    @if (Auth::guest())
+                        <li><a href="{{ url('/login') }}">Login</a></li>
+                        <li><a href="{{ url('/register') }}">Register</a></li>
+                    @else
+                     
+                     <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Menu
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/recipe/create') }}">Crea ricette</a></li>
+                                
+                            </ul>
+                        </li>
+                    
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                    @endif
+                       <div class="col-sm-6 col-md-6">
+                
+                {!! Form::open(['url' => '/search', 'method' => 'get', 'class' => 'navbar-form navbar-left', 'role' => 'ingrediente']) !!}
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Cerca ricetta" name="ingrediente">
+                    
+                    <div class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </div>
+                    </div>
+                {!! Form::close() !!}
+                </div>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @if(Session::has('flash_message'))
+            <div class="alert alert-success">
+                {{ Session::get('flash_message') }}
+            </div>
+        @endif
+    @yield('content')
     
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-        $recipe = Recipe::count();
-        $ingredient = Ingredient::count();
-        $user = User::count();
-        return view('admin.index', compact('recipe','ingredient','user'));
-    }
+    <!-- JavaScripts -->
     
-    public function ingredient()
-    {
-        $ingredient = Ingredient::orderBy('id', 'DESC')->paginate(5);
-        return view('admin.ingredient',compact('ingredient'));
-    }
-    
-    public function ingdestroy(Request $request, $id)
-    {
-        $ingredient = Ingredient::findOrFail($id);
-        $ingredient->delete();
-        Session()->flash('flash_message', 'Cancellato');
-        return redirect()->back();
-        
-    }
-    
-    public function recipe()
-    {
-         $recipe = Recipe::orderBy('id', 'DESC')->paginate(5);
-        return view('admin.recipe',compact('recipe'));
-    }
-    
-    public function recdestroy(Request $request, $id)
-    {
-        $recipe = Recipe::findOrFail($id);
-        $recipe->delete();
-        Session()->flash('flash_message', 'Cancellato');
-        return redirect()->back();
-        
-    }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function user()
-    {
-        $user = User::orderBy('id', 'DESC')->paginate(5);
-        return view('admin.user',compact('user'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('admin.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-        'name' => 'required',
-        'email' => 'required',
-        'password' => 'required',
-        'role' => 'required'
-    ]);
-    $user = new User;
-    $user->name = $request->input('name');
-    $user->email = $request->input('email');
-    $user->password = Hash::make(Input::get('password'));
-    $user->role = $request->input('role');
-    $user->save();
-    Session()->flash('flash_message', 'Utente aggiunto con successo!');
-    return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $user = User::findOrFail($id);
-        
-        return view('admin.edit', compact('user'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $user = User::findOrFail($id);
-
-        $this->validate($request, [
-        'name' => 'required',
-        'email' => 'required',
-        
-        'role' => 'required'
-    ]);
-        $user->name = $request->input('name');
-    $user->email = $request->input('email');
-    //$user->password = Hash::make(Input::get('password'));
-    $user->role = $request->input('role');
-    $user->update();
-        //dd($request->all());
-        //$user->update($input);
-        Session()->flash('flash_message', 'Aggiornato correttamente');
-        return redirect()->back();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
-        Session()->flash('flash_message', 'Cancellato');
-        return redirect()->route('admin.user');
-    }
-}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/js/select2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script>
+        $(document).ready(function() {
+    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+    });
+    </script>
+    @yield('footer')
+</body>
+</html>
