@@ -169,6 +169,6 @@ class AdminController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         Session()->flash('flash_message', 'Cancellato');
-        return redirect()->route('admin.index');
+        return redirect()->route('admin.user');
     }
 }
