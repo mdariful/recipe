@@ -63,6 +63,11 @@
       <i class="fa fa-sign-out fa-lg"></i> Esci
       </a>
     </li>
+    <li>
+      <a href="{{ url('/recipe') }}">
+      <i class="fa fa-arrow-circle-left fa-lg"></i> Torna al sito
+      </a>
+    </li>
 
 </ul>
   </div>
