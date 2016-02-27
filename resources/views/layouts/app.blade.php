@@ -55,7 +55,10 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <!--<li><a href="{{ url('/home') }}">Home</a></li>-->
-                    <li><a href="{{ url('/recipe') }}">Ricette</a></li>
+                    <li><a href="{{ route('recipe.index') }}">Ricette</a></li>
+                    @if(Auth::user()->is_admin())
+                    <li><a href="{{ route('admin.index') }}">Amministrazione</a></li>
+                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -74,7 +77,7 @@
                                 Menu
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/recipe/create') }}">Crea ricette</a></li>
+                                <li><a href="{{ route('recipe.create') }}">Crea ricette</a></li>
                                 
                             </ul>
                         </li>

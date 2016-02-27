@@ -28,7 +28,7 @@
                 <div>Utenti</div>
               </div>
             </div>
-          </div><a href="/admin/user">
+          </div><a href="{{ route('admin.user') }}">
             <div class="panel-footer"><span class="pull-left">Visualizza utenti</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
               <div class="clearfix"></div>
             </div></a>
@@ -46,7 +46,7 @@
                 <div>Ricetta</div>
               </div>
             </div>
-          </div><a href="/admin/recipe">
+          </div><a href="{{ route('admin.recipe') }}">
             <div class="panel-footer"><span class="pull-left">Visualizza le ricette</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
               <div class="clearfix"></div>
             </div></a>
@@ -64,7 +64,7 @@
                 <div>Ingredienti</div>
               </div>
             </div>
-          </div><a href="/admin/ingredient">
+          </div><a href="{{ route('admin.ingredient') }}">
             <div class="panel-footer"><span class="pull-left">Visualizza gli ingredienti</span><span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
               <div class="clearfix"></div>
             </div></a>

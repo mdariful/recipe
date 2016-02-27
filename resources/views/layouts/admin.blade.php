@@ -36,7 +36,7 @@
     
     <ul id="menu-content" class="menu-content collapse out">
     <li>
-      <a href="/admin">
+      <a href="{{ route('admin.index') }}">
       <i class="fa fa-dashboard fa-lg"></i> Dashboard
       </a>
     </li>
@@ -46,8 +46,8 @@
       <a href="#"><i class="fa fa-users fa-lg"></i> Utenti <span class="arrow"></span></a>
     </li>
     <ul class="sub-menu collapse out" id="user">
-      <li><a href="{{ url('admin/user') }}">Utenti</a></li>
-      <li><a href="{{ url('admin/create') }}">Crea utente</a></li>
+      <li><a href="{{ route('admin.user') }}">Utenti</a></li>
+      <li><a href="{{ route('admin.create') }}">Crea utente</a></li>
     </ul>
     
     
@@ -55,8 +55,8 @@
       <a href="#"><i class="fa fa-cutlery fa-lg"></i> Ricette <span class="arrow"></span></a>
     </li>  
     <ul class="sub-menu collapse out" id="recipe">
-      <li><a href="{{ url('admin/recipe') }}">Visualizza Ricette</a></li>
-      <li><a href="{{ url('admin/ingredient') }}">Ingredienti</a></li>
+      <li><a href="{{ route('admin.recipe') }}">Visualizza Ricette</a></li>
+      <li><a href="{{ route('admin.ingredient') }}">Ingredienti</a></li>
     </ul>
     <li>
       <a href="{{ url('/logout') }}">
@@ -64,7 +64,7 @@
       </a>
     </li>
     <li>
-      <a href="{{ url('/recipe') }}">
+      <a href="{{ route('recipe.index') }}">
       <i class="fa fa-arrow-circle-left fa-lg"></i> Torna al sito
       </a>
     </li>
