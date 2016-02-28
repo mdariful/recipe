@@ -77,7 +77,7 @@
               <div class="col-xs-3"><i class="fa fa-life-ring fa-5x"></i></div>
               <div class="col-xs-9 text-right">
                 
-                <div class="huge">Ci trovi su</div>
+                <div class="huge">Mi trovi su</div>
                 
                 <div>Github</div>
               </div>
