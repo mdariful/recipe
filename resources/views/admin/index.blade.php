@@ -43,7 +43,7 @@
                 
                 <div class="huge">{{$recipe}}</div>
                
-                <div>Ricetta</div>
+                <div>Ricette</div>
               </div>
             </div>
           </div><a href="{{ route('admin.recipe') }}">
