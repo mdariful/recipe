@@ -81,6 +81,7 @@
                             </ul>
                         </li>
                    @else
+                   @if (auth()->user()->can_post())
                      <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Menu
@@ -90,6 +91,7 @@
                                 
                             </ul>
                         </li>
+                        @endif
                     @endif
                     @endif
                         <li class="dropdown">
