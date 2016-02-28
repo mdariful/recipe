@@ -27,7 +27,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-inverse">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
 
@@ -132,6 +132,16 @@
                 {{ Session::get('flash_message_warning') }}
             </div>
         @endif
+<!--<ol class="breadcrumb">
+ <li>
+  <a href="{{route('recipe.index')}}">Home</a>
+</li>
+@for($i = 0; $i <= count(Request::segments()); $i++)
+<li>
+  <a href="">{{Request::segment($i)}}</a>
+</li>
+@endfor
+</ol>-->
     @yield('content')
     
     <!-- JavaScripts -->

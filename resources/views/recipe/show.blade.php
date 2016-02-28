@@ -70,7 +70,7 @@
 							<i class="fa fa-envelope-o"></i> Torna indietro
 						</a></li>
 						 @if (auth()->check())
-                   @if (auth()->user()->can_post())
+                   @if (auth()->user()->is_admin() || (auth()->user()->id == $recipe->user_id))
 						<li class="list-group-item"><a href="{{ route('recipe.edit', $recipe->id) }}">
 							<i class="fa fa-edit"></i>Modifica o Cancella
 						</a></li>
