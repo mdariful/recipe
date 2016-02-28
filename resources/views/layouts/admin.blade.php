@@ -28,6 +28,8 @@
 <body id="app-layout">
 <div class="nav-side-menu">
   <div class="brand">My recipe panel</div>
+  <div class="brand"><img width="100" src="https://avatars1.githubusercontent.com/u/8091848?v=3&s=460" alt="" class="img-circle" /><br />Bentornato {{ Auth::user()->name }}</div>
+  
    <i class="fa fa-bars fa-3x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   
   <div class="menu-list">

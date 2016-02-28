@@ -53,9 +53,9 @@
 						<ul>
 							<li><a class="active" href="/">HOME</a></li>
 							<li><a href="recipe">RICETTE</a></li>
-							<li><a href="#">COSA OFFRIAMO</a></li>
-							<li><a href="#">CONTATTI</a></li>
-							<li><a href="login">LOGIN</a></li>
+							<li><a href="https://github.com/mdariful/recipe">CHI SONO</a></li>
+							<li><a href="{{ url('/login') }}">LOGIN</a></li>
+							<li><a href="{{ url('/register') }}">REGISTRAZIONE</a></li>
 							<div class="clearfix"></div>
 						</ul>
 					</div>
