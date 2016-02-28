@@ -28,7 +28,7 @@ class RecipeController extends Controller
         $ingredients = Ingredient::lists('name', 'id');
         return view('recipe.create', compact('ingredients'));
     }else{
-        Session()->flash('flash_message', 'Non hai i permessi!');
+        Session()->flash('flash_message_warning', 'Non hai i permessi!');
         return redirect()->route('recipe.index');
     }
         
@@ -111,7 +111,7 @@ class RecipeController extends Controller
         if($recipe && ($request->user()->id == $recipe->user_id || $request->user()->is_admin())){
         return view('recipe.edit',compact('ingredients','recipe'));
         }else{
-        Session()->flash('flash_message', 'Non hai i permessi!');
+        Session()->flash('flash_message_warning', 'Non hai i permessi!');
         return redirect()->route('recipe.index');
         }
 
@@ -182,7 +182,7 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::findOrFail($id);
         $recipe->delete();
-        Session()->flash('flash_message', 'Cancellato');
+        Session()->flash('flash_message_delete', 'Cancellato');
         return redirect()->route('recipe.index');
     }
     

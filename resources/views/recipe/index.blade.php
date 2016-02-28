@@ -7,7 +7,7 @@
     @foreach (array_chunk($recipe->all(), 4) as $column)
       <div class="row">
           @foreach ($column as $ric)
-              <div class="col-md-3">
+              <div class="col-md-3 margin-bottom-70">
             <div class="thumbnail">
                 
                 <a href="{{ route('recipe.show', $ric->id) }}">

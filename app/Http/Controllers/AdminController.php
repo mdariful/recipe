@@ -42,7 +42,7 @@ class AdminController extends Controller
     {
         $ingredient = Ingredient::findOrFail($id);
         $ingredient->delete();
-        Session()->flash('flash_message', 'Cancellato');
+        Session()->flash('flash_message_delete', 'Cancellato');
         return redirect()->back();
         
     }
@@ -57,7 +57,7 @@ class AdminController extends Controller
     {
         $recipe = Recipe::findOrFail($id);
         $recipe->delete();
-        Session()->flash('flash_message', 'Cancellato');
+        Session()->flash('flash_message_delete', 'Cancellato');
         return redirect()->back();
         
     }
@@ -168,7 +168,7 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
         $user->delete();
-        Session()->flash('flash_message', 'Cancellato');
+        Session()->flash('flash_message_delete', 'Cancellato');
         return redirect()->route('admin.user');
     }
 }

@@ -79,6 +79,16 @@
             <div class="alert alert-success">
                 {{ Session::get('flash_message') }}
             </div>
+        @endif
+    @if(Session::has('flash_message_delete'))
+            <div class="alert alert-danger">
+                {{ Session::get('flash_message_delete') }}
+            </div>
+        @endif
+    @if(Session::has('flash_message_warning'))
+            <div class="alert alert-warning">
+                {{ Session::get('flash_message_warning') }}
+            </div>
         @endif    
         </div>
     <!-- JavaScripts -->

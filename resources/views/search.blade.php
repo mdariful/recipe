@@ -2,37 +2,40 @@
 
 @section('content')
 <div class="container">
-    @if(count($recipe) === 0)
+    @if(isset($recipe))
+    @if(count($recipe) == 0)
         <h1>Nessun risultato trovato</h1>
      @else   
-    <div id="products" class="row list-group">
-        @foreach($recipe as $ricetta)
-        <div class="item  col-xs-4 col-lg-4">
+     @foreach (array_chunk($recipe->all(), 4) as $column)
+      <div class="row">
+          @foreach ($column as $ric)
+              <div class="col-md-3">
             <div class="thumbnail">
-                <img class="group list-group-image" src="{{ URL::asset('img/ricette.jpg') }}" alt="" />
+                
+                <a href="{{ route('recipe.show', $ric->id) }}">
+                <img class="img-responsive" src="images/recipe/{{$ric->id}}.jpg" alt="" /></a>
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading">
-                        {{ str_limit($ricetta->name, $limit = 20, $end = '...') }}</h4>
+                        {!! str_limit($ric->name, $limit = 25, $end = '...') !!}</h4>
                     <p class="group inner list-group-item-text">
-                        {{ str_limit($ricetta->description, $limit = 150, $end = '...') }}</p>
+                       {!! str_limit($ric->description, $limit = 180, $end = '...') !!}</p>
                         
                     <div class="row">
-                        <div class="col-xs-12 col-md-6">
+                        <div class="col-xs-12">
                             <p class="lead">
-                            Difficoltà: {{ $ricetta->difficult }}  
+                            {{ $ric->category }}  
                             </p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <a class="btn btn-success" href="{{ route('recipe.show', $ricetta->id) }}">Visualizza la ricetta</a>
                         </div>
                     </div>
                 </div>
+            
             </div>
-        </div>
-        @endforeach
-    </div>
+            </div>
+          @endforeach
+      </div>
+    @endforeach
     @endif
-    
+    @endif
 </div>
 
 @endsection
