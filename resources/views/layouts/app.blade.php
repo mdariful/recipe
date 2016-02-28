@@ -71,6 +71,15 @@
                       @if (auth()->check())
                    @if (auth()->user()->is_admin())
                       <li><a href="{{ route('admin.index') }}">Amministrazione</a></li>
+                      <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Menu
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{ route('recipe.create') }}">Crea ricette</a></li>
+                                
+                            </ul>
+                        </li>
                    @else
                      <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
