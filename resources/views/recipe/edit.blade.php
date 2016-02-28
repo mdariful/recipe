@@ -75,7 +75,7 @@
         createTag: function(newIngredient) {
        return {
            id: 'new:' + newIngredient.term,
-           text: newIngredient.term + ' (new)'
+           text: newIngredient.term + ' (+)'
        };
    }
       });

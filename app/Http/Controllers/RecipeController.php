@@ -47,7 +47,8 @@ class RecipeController extends Controller
         'name' => 'required',
         'description' => 'required',
         'difficult' => 'required',
-        'category' => 'required'
+        'category' => 'required',
+        
     ]);
    
     /**
@@ -74,10 +75,18 @@ class RecipeController extends Controller
        }
        $ingredients[] = $ingId;
    }
+     
      //dd($request->all());
      $recipe = Auth::user()->recipe()->create($request->all());
      
      $recipe->ingredients()->attach($ingredients);
+     
+     $file = $request->file('image');
+     $ext = $file->getClientOriginalExtension();
+     $imageName = $recipe->id . '.' . $ext;
+
+    $file->move(base_path() . '/public/images/recipe/', $imageName);
+   
     Session()->flash('flash_message', 'Ricetta aggiunta con successo!');
     return redirect()->back();
 

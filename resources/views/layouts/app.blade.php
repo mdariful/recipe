@@ -27,7 +27,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
         <div class="container">
             <div class="navbar-header">
 
@@ -56,9 +56,6 @@
                 <ul class="nav navbar-nav">
                     <!--<li><a href="{{ url('/home') }}">Home</a></li>-->
                     <li><a href="{{ route('recipe.index') }}">Ricette</a></li>
-                    @if(Auth::user()->is_admin())
-                    <li><a href="{{ route('admin.index') }}">Amministrazione</a></li>
-                    @endif
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -71,7 +68,10 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                     
+                      @if (auth()->check())
+                   @if (auth()->user()->is_admin())
+                      <li><a href="{{ route('admin.index') }}">Amministrazione</a></li>
+                   @else
                      <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 Menu
@@ -81,7 +81,8 @@
                                 
                             </ul>
                         </li>
-                    
+                    @endif
+                    @endif
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{ Auth::user()->name }} <span class="caret"></span>
@@ -91,18 +92,18 @@
                             </ul>
                         </li>
                     @endif
-                       <div class="col-sm-6 col-md-6">
-                
                 {!! Form::open(['url' => '/search', 'method' => 'get', 'class' => 'navbar-form navbar-left', 'role' => 'ingrediente']) !!}
-                    <div class="input-group">
+                    <div class="form-group">
                         <input type="text" class="form-control" placeholder="Cerca ricetta" name="ingrediente">
                     
-                    <div class="input-group-btn">
+                    </div>
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                    </div>
-                    </div>
+                    
+                    
                 {!! Form::close() !!}
-                </div>
+                
+                
+                
                 </ul>
             </div>
         </div>
@@ -120,12 +121,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/js/select2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-    <script>
-        $(document).ready(function() {
-    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
-    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
-    });
-    </script>
     @yield('footer')
 </body>
 </html>

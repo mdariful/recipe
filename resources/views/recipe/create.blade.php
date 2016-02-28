@@ -7,8 +7,8 @@
     <p class="lead">Crea, o <a href="{{ route('recipe.index') }}">torna alle ricette.</a></p>
     <hr>
 {!! Form::open([
-    'route' => 'recipe.store'
-], ['class'=>'form-horizontal']) !!}
+    'route' => 'recipe.store','files' => true
+], ['class'=>'form-horizontal',]) !!}
 
 <div class="form-group">
 {!! Form::label('name', 'Nome della ricetta:') !!}
@@ -16,7 +16,10 @@
 {!! Form::label('description', 'Descrizione della ricetta:') !!}
 {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
 </div>
-
+<div class="form-group">
+    {!! Form::label('Immagine') !!}
+    {!! Form::file('image', null) !!}
+</div>
 <div class="form-group">
 {!! Form::label('name', 'Difficoltà:', ['class' =>'control-label']) !!}
 
@@ -68,7 +71,7 @@
         createTag: function(newIngredient) {
        return {
            id: 'new:' + newIngredient.term,
-           text: newIngredient.term + ' (new)'
+           text: newIngredient.term + ' (+)'
        };
    }
       });

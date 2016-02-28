@@ -8,7 +8,17 @@
                 <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
-                    Questa è la tua bacheca
+                    @if (auth()->check())
+                   @if (auth()->user()->can_post())
+                    Bentornato {{ Auth::user()->name }}
+                    <br>
+                    Questa è la tua bacheca. 
+                    <br>
+                    @else
+                    Benvenuto {{ Auth::user()->name }}<br>
+                    Attendi la conferma da parte di un'amministratore l'approvazione del tuo account.
+                   @endif
+                    @endif
                 </div>
             </div>
         </div>

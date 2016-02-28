@@ -11,7 +11,9 @@
 					<div class="panel-heading"><strong><span class="fa fa-th"></span> Ricetta</strong></div>
 					<div class="panel-body">
 						<div class="mail-header row">
+							
 							<div class="col-md-8">
+								
 								<h3>{{ $recipe->name }}</h3>
 							</div>
 							
@@ -20,7 +22,7 @@
 							<div class="row">
 								<div class="col-md-8">
 									<ul class="list-unstyled list-inline">
-										<li><i class="fa fa-calendar-o"></i>{{ $recipe->created_at }}</li>
+										<li><i class="fa fa-calendar-o"></i>{{ date('d F Y', strtotime($recipe->created_at)) }}</li>
 										<li><i class="fa fa-user"></i>{{$recipe->user->name}}</li>
 										<li><i class="fa fa-cutlery"></i>{{ $recipe->category }}</li>
 										<li><i class="fa fa-hourglass"></i>{{ $recipe->difficult }}</li>
@@ -28,18 +30,25 @@
 								</div>
 							</div>
 						</div>
-						<div class="mail-content">
-							{{ $recipe->description }}
-						</div>
-						<div class="mail-actions">
+					
+						<div class="col-md-12">
 							@unless ($recipe->ingredients->isEmpty())
-							<ul class="list-unstyled">
-								<li><i class="fa fa-check"></i>Ingredienti: </li>
+							<ul class="list-group">
+								<h4>Ingredienti: </h4>
 								@foreach($recipe->ingredients as $ingredienti)
-								<li><span class="label label-default">{{$ingredienti->name}}</span></li>
+								<li class="list-group-item">{{$ingredienti->name}}</li>
 								@endforeach
 							</ul>
-						@endunless
+								@endunless
+						</div>
+						
+						
+							<div class="col-md-12">
+								<h4>Preparazione: </h4>
+							{!! nl2br(e($recipe->description)) !!}
+						</div>
+						<div class="col-md-12">
+							<img class="img-responsive img-thumbnail" src="/images/recipe/{{$recipe->id}}.jpg" alt="" /></a>
 						</div>
 					</div>
 				</section>
@@ -53,22 +62,26 @@
 						<li class="list-group-item"><a href="{{ route('recipe.index') }}">
 							<i class="fa fa-envelope-o"></i> Torna indietro
 						</a></li>
+						<li class="list-group-item"><a href="{{ route('recipe.create') }}">
+							<i class="fa fa-paper-plane"></i> Manda la tua ricetta
+						</a></li>
 						@else
 							<li class="list-group-item"><a href="{{ route('recipe.index') }}">
 							<i class="fa fa-envelope-o"></i> Torna indietro
 						</a></li>
-						
+						 @if (auth()->check())
+                   @if (auth()->user()->can_post())
 						<li class="list-group-item"><a href="{{ route('recipe.edit', $recipe->id) }}">
 							<i class="fa fa-edit"></i>Modifica o Cancella
 						</a></li>
-					</ul>@endif
+						@endif
+                    @endif
+					</ul>
+					@endif
 				</section>
 			</div>
 			
 		</div>
 
 	</section>
-
-
-
 @endsection
