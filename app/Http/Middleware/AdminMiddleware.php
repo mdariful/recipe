@@ -22,7 +22,7 @@ class AdminMiddleware
         {
         return $next($request);
         }else{
-        return view('home');
+        return redirect()->route('recipe.index');
         }
       
     }
