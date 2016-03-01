@@ -3,9 +3,10 @@
 @section('content')
 <div class="container">
     <h1 class="page-header">Lista delle ricette</h1>
+    <a class="btn btn-primary" href="{{ route('recipe.create') }}" role="button">Crea Ricetta</a>
     <table class="table table-striped custab">
     <thead>
-        
+
         <tr>
             <th>Nome</th>
             <th>Azioni</th>
@@ -29,7 +30,7 @@
             </tr>
              @endforeach
     </table>
-   
+
     <div class="page-nation">
     {!! $recipe->render() !!}
     </div>

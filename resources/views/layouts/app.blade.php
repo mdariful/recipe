@@ -61,8 +61,8 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
 
-                    
-                 
+
+
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
@@ -77,7 +77,7 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('recipe.create') }}">Crea ricette</a></li>
-                                
+
                             </ul>
                         </li>
                    @else
@@ -88,7 +88,7 @@
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ route('recipe.create') }}">Crea ricette</a></li>
-                                
+
                             </ul>
                         </li>
                         @endif
@@ -106,15 +106,15 @@
                 {!! Form::open(['url' => '/search', 'method' => 'get', 'class' => 'navbar-form navbar-left', 'role' => 'ingrediente']) !!}
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Cerca ricetta" name="ingrediente">
-                    
+
                     </div>
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                    
-                    
+
+
                 {!! Form::close() !!}
-                
-                
-                
+
+
+
                 </ul>
             </div>
         </div>
@@ -145,9 +145,9 @@
 @endfor
 </ol>-->
     @yield('content')
-    
+
     <!-- JavaScripts -->
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/js/select2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

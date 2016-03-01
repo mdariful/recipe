@@ -29,21 +29,21 @@
 <div class="nav-side-menu">
   <div class="brand">My recipe panel</div>
   <div class="brand"><img width="100" src="https://avatars1.githubusercontent.com/u/8091848?v=3&s=460" alt="" class="img-circle" /><br />Bentornato {{ Auth::user()->name }}</div>
-  
+
    <i class="fa fa-bars fa-3x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
-  
+
   <div class="menu-list">
-  
-   
-    
+
+
+
     <ul id="menu-content" class="menu-content collapse out">
     <li>
       <a href="{{ route('admin.index') }}">
       <i class="fa fa-dashboard fa-lg"></i> Dashboard
       </a>
     </li>
-    
-    
+
+
     <li data-toggle="collapse" data-target="#user" class="collapsed">
       <a href="#"><i class="fa fa-users fa-lg"></i> Utenti <span class="arrow"></span></a>
     </li>
@@ -51,13 +51,14 @@
       <li><a href="{{ route('admin.user') }}">Utenti</a></li>
       <li><a href="{{ route('admin.create') }}">Crea utente</a></li>
     </ul>
-    
-    
+
+
     <li data-toggle="collapse" data-target="#recipe" class="collapsed">
       <a href="#"><i class="fa fa-cutlery fa-lg"></i> Ricette <span class="arrow"></span></a>
-    </li>  
+    </li>
     <ul class="sub-menu collapse out" id="recipe">
       <li><a href="{{ route('admin.recipe') }}">Visualizza Ricette</a></li>
+      <li><a href="{{ route('recipe.create') }}">Crea Ricetta</a></li>
       <li><a href="{{ route('admin.ingredient') }}">Ingredienti</a></li>
     </ul>
     <li>
@@ -91,10 +92,10 @@
             <div class="alert alert-warning">
                 {{ Session::get('flash_message_warning') }}
             </div>
-        @endif    
+        @endif
         </div>
     <!-- JavaScripts -->
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
