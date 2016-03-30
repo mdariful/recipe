@@ -10,13 +10,13 @@ use App\Http\Controllers\Controller;
 
 class RecipeViewController extends Controller
 {
-    
-        
+
+
 	/**
 	 * Return a view to display search results for a given query
 	 */
-	 
-	
+
+
 	public function search(Request $request) {
 		$searchString = trim(strip_tags($request->get('ingrediente')));
 
@@ -26,9 +26,9 @@ class RecipeViewController extends Controller
         })->get();
 		return view('search',compact('recipe'));
 	}
-    
+
     /**
-     * Show the form for creating a new resource.
+     * Show all resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -36,10 +36,10 @@ class RecipeViewController extends Controller
     {
         $recipe = Recipe::orderBy('created_at', 'DESC')->paginate(8);
 
-    return view('recipe.index',compact('recipe'));
-        
-        
+        return view('recipe.index',compact('recipe'));
+
+
     }
-    
+
 
 }

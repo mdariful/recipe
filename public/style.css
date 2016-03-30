@@ -7,7 +7,7 @@ body { padding-top: 70px; }
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
-    
+
 }
 .thumbnail:hover{
     border: 1px solid #ccc;
@@ -69,3 +69,34 @@ body { padding-top: 70px; }
 .mail-container .mail-attachments { padding: 15px 0px; border-bottom: 1px solid rgb(241, 241, 241); }
 .mail-container .mail-actions { margin-top: 10px; }
 .panel .panel-heading { text-transform: uppercase; }
+.error {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error-code {
+  bottom: 60%;
+  color: #2d353c;
+  font-size: 150px;
+  line-height: 100px;
+}
+
+.error-desc {
+  font-size: 18px;
+  color: #647788;
+}
+
+.m-b-10 {
+  margin-bottom: 10px!important;
+}
+
+.m-b-20 {
+  margin-bottom: 20px!important;
+}
+
+.m-t-20 {
+  margin-top: 20px!important;
+}
+.custm {
+    font-size: 20px
+}

@@ -25,41 +25,41 @@ class AdminController extends Controller
      */
     public function index()
     {
-        
+
         $recipe = Recipe::count();
         $ingredient = Ingredient::count();
         $user = User::count();
         return view('admin.index', compact('recipe','ingredient','user'));
     }
-    
+
     public function ingredient()
     {
         $ingredient = Ingredient::orderBy('id', 'DESC')->paginate(5);
         return view('admin.ingredient',compact('ingredient'));
     }
-    
+
     public function ingdestroy(Request $request, $id)
     {
         $ingredient = Ingredient::findOrFail($id);
         $ingredient->delete();
         Session()->flash('flash_message_delete', 'Cancellato');
         return redirect()->back();
-        
+
     }
-    
+
     public function recipe()
     {
          $recipe = Recipe::orderBy('id', 'DESC')->paginate(5);
         return view('admin.recipe',compact('recipe'));
     }
-    
+
     public function recdestroy(Request $request, $id)
     {
         $recipe = Recipe::findOrFail($id);
         $recipe->delete();
         Session()->flash('flash_message_delete', 'Cancellato');
         return redirect()->back();
-        
+
     }
     /**
      * Display a listing of the resource.
@@ -126,7 +126,7 @@ class AdminController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        
+
         return view('admin.edit', compact('user'));
     }
 
@@ -144,7 +144,7 @@ class AdminController extends Controller
         $this->validate($request, [
         'name' => 'required',
         'email' => 'required',
-        
+
         'role' => 'required'
     ]);
         $user->name = $request->input('name');

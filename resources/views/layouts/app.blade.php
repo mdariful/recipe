@@ -13,8 +13,8 @@
 
     <!-- Styles -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ URL::asset('style.css') }}" rel="stylesheet">
-     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/css/select2.min.css" rel="stylesheet" />
+    <link href="{{ URL::asset('style.css', true) }}" rel="stylesheet">
+     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2-rc.1/css/select2.min.css" />
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <style>
         body {
@@ -119,6 +119,8 @@
             </div>
         </div>
     </nav>
+
+    <div class="container">
     @if(Session::has('flash_message'))
             <div class="alert alert-success">
                 {{ Session::get('flash_message') }}
@@ -134,6 +136,7 @@
                 {{ Session::get('flash_message_warning') }}
             </div>
         @endif
+    </div>
 <!--<ol class="breadcrumb">
  <li>
   <a href="{{route('recipe.index')}}">Home</a>
